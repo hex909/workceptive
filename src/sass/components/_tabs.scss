@@ -1,0 +1,159 @@
+@use "../variables" as variable;
+
+.tabs {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+
+  ul {
+    display: flex;
+    overflow-x: scroll;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.281);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    li {
+      flex: 1;
+      display: block;
+      text-align: center;
+      border-left: 1px solid rgb(138, 138, 138);
+      border-right: 1px solid rgb(138, 138, 138);
+      transition: background-color 450ms, color 400ms;
+
+      &:nth-child(2n),
+      &:first-child {
+        border-left-width: 0;
+      }
+
+      &:last-child {
+        border-right-width: 0;
+      }
+
+      &.is-active {
+        background-color: variable.$secondary;
+
+        a {
+          &:hover {
+            background-color: transparent;
+          }
+
+          color: white;
+        }
+      }
+
+      @media (max-width: 500px) {
+        a {
+          padding: 1rem 0.2rem;
+        }
+      }
+
+      a {
+        cursor: pointer;
+        display: block;
+        padding: 1.1rem 0.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: black;
+        cursor: default;
+
+        &:hover {
+          background-color: lighten($color: variable.$secondary, $amount: 26);
+        }
+      }
+    }
+  }
+}
+
+.tab__content {
+  margin-bottom: 2rem;
+
+  .content {
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 0;
+    justify-content: space-between;
+    overflow: hidden;
+    opacity: 0;
+
+    &.is-active {
+      opacity: 1;
+      min-height: 500px;
+
+      .image_bg {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      div {
+        transform: translateX(0);
+        opacity: 1;
+
+        &.last {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    .image_bg {
+      width: 50%;
+      height: 400px;
+      // background-color: rgb(194, 194, 194);
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.24);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      border-radius: 5px;
+      position: absolute;
+      opacity: 0;
+      transition: transform 450ms, opacity 400ms;
+      object-fit: cover;
+    }
+
+    div {
+      width: 100%;
+      z-index: 2;
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: transform 500ms, opacity 400ms;
+
+      p {
+        margin-top: 2rem;
+        padding: 1rem;
+        max-width: 50ch;
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+
+      &.last {
+        align-self: flex-end;
+        margin-bottom: 2rem;
+        transform: translateX(100px);
+
+        p {
+          margin-left: auto;
+        }
+      }
+    }
+
+    @media (max-width: 750px) {
+      flex-direction: column;
+
+      .image_bg {
+        width: 100%;
+        height: 100%;
+        filter: brightness(30%);
+      }
+
+      div {
+        &.last {
+          p {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

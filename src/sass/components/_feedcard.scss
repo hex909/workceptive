@@ -1,0 +1,82 @@
+@use "../variables" as variable;
+
+.feed {
+  display: flex;
+  justify-content: space-between;
+  min-height: 600px;
+  position: relative;
+  margin-top: 1rem;
+
+  &::after,
+  &::before {
+    content: "";
+    width: 90%;
+    height: 10px;
+    background-color: variable.$secondary;
+    position: absolute;
+    transform-origin: 50% 50%;
+    transform: translate(0%, -50%) rotate(25deg);
+    bottom: 50%;
+    right: 0%;
+  }
+  &::before {
+    transform: translate(1%, -25px) rotate(25deg);
+  }
+
+  &__card {
+    z-index: 2;
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+    &.card-2 {
+      align-self: center;
+    }
+    &.card-3 {
+      align-self: flex-end;
+    }
+
+    width: 330px;
+    height: 390px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.24);
+    .image_card {
+      width: 100%;
+      height: 180px;
+      background-color: grey;
+    }
+
+    .content {
+      padding: 1rem;
+      &__title {
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  @media (max-width: 1040px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    &::after,
+    &::before {
+      height: 90%;
+      width: 10px;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 46%;
+    }
+    &::before {
+      transform: translate(30px, -50%);
+    }
+
+    &__card {
+      &.card-3 {
+        align-self: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+@use "../variables" as variable;
+
+.contact {
+  min-height: calc(100vh - variable.$nav_height);
+  display: flex;
+  gap: 2rem;
+  .details {
+    width: 60%;
+    min-width: 440px;
+    min-height: calc(100vh - variable.$nav_height);
+    background-color: variable.$secondary;
+    padding: 45px 51px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .map {
+      width: 100%;
+      height: 300px;
+      background-color: rgb(140, 255, 140);
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 12px white;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 835px) {
+      min-width: 200px;
+      min-height: 400px;
+      width: 100%;
+      padding: 35px 40px;
+    }
+    .title {
+      font-size: clamp(1.9rem, 10vw, 3.5rem);
+      width: 100%;
+      white-space: nowrap;
+    }
+    .com_details {
+      .company-address {
+        font-size: 1.1rem;
+        font-style: normal;
+        margin-bottom: 1rem;
+      }
+      .company-phone {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .form {
+    padding-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 1rem;
+
+    .form-ele {
+      display: flex;
+      flex-direction: column;
+      gap: 2.1rem;
+      width: 100%;
+      padding-left: 1rem;
+    }
+    .field__container {
+      display: flex;
+      gap: 2rem;
+
+      @media (max-width: 1135px) {
+        flex-direction: column;
+        gap: 2.1rem;
+      }
+    }
+
+    .control {
+      &.error-shake {
+        animation: err-shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+    }
+  }
+  @media (max-width: 835px) {
+    flex-direction: column;
+  }
+}
+
+.submit {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border: 3px solid variable.$secondary;
+  border-radius: 5px;
+  height: 50px;
+  width: 226px;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 5px;
+  transition: background-color 450ms, color 350ms, letter-spacing 200ms,
+    transform 200ms;
+
+  &:disabled {
+    opacity: 0.7;
+  }
+
+  &:not(:disabled):hover {
+    background-color: variable.$secondary;
+    letter-spacing: 1px;
+    color: white;
+  }
+
+  &:not(:disabled):active {
+    transform: scale(1.1);
+
+    @media (max-width: 500px) {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (max-width: 1135px) {
+    width: 75%;
+    min-width: 300px;
+    max-width: 500px;
+  }
+
+  @media (max-width: 835px) {
+    width: 95%;
+  }
+}
+
+.err-message {
+  padding-left: 10px;
+  padding-top: 5px;
+  color: #ff0033;
+}
+
+@keyframes err-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}

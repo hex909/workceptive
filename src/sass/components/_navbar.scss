@@ -1,0 +1,145 @@
+@use "../variables" as v;
+
+header {
+  box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.321);
+  height: v.$nav_height;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transition: all 250ms;
+  z-index: 100;
+  position: sticky;
+
+  &.sticky {
+    background-color: white;
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  // padding-top: 0.5rem;
+  margin-inline: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  overflow: hidden;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      span {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(37, 37, 37);
+      }
+
+      img {
+        width: 65px;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    gap: 4rem;
+    margin-right: 1rem;
+
+    .nav-btn {
+      white-space: nowrap;
+      padding: 0.8rem;
+      background-color: transparent;
+      border: 3px solid v.$secondary;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 0.81rem;
+      font-weight: 500;
+      transition: background-color 250ms, color 150ms;
+
+      // background-image: linear-gradient(to right, v.$secondary 50%, white 100%);
+
+      &:hover,
+      &:focus {
+        background-color: v.$secondary;
+        color: white;
+      }
+    }
+
+    @media (max-width: 760px) {
+      gap: 1rem;
+    }
+  }
+
+  &-burger {
+    display: none;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+
+  &__item {
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.3rem 1rem;
+    position: relative;
+    transition: color 250ms ease-out;
+
+    &::after {
+      content: "";
+      width: 0%;
+      height: 5px;
+      background-color: v.$secondary;
+      border-radius: 5px;
+      top: 100%;
+      left: 0;
+      position: absolute;
+      transition: width 0.251s ease-in-out;
+    }
+
+    &:hover::after,
+    &.active::after,
+    &:focus::after,
+    &:hover {
+      width: 100%;
+      color: v.$primary;
+    }
+  }
+
+  @media (max-width: 680px) {
+    &-burger {
+      display: block;
+      font-size: 1.4rem;
+    }
+
+    &__menu {
+      position: fixed;
+      top: 70px;
+      right: calc(0% - 1rem);
+      gap: 2rem;
+      flex-direction: column;
+      width: 0%;
+      height: calc(100vh - 70px);
+      background-color: white;
+      box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.514);
+      overflow: hidden;
+      padding: 0rem;
+      transition: width 250ms ease-out, padding 250ms ease-out;
+
+      &.is-active {
+        width: 60%;
+        padding: 1rem;
+      }
+    }
+  }
+}

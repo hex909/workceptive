@@ -1,0 +1,39 @@
+@use "../variables" as variable;
+
+.request {
+  text-align: center;
+  background-color: variable.$secondary;
+  margin-bottom: 1rem;
+  padding: 2rem 0.5rem;
+  .title {
+    font-size: 1.375rem;
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    [type] {
+      height: 58px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+      background-color: white;
+      border-radius: 5px;
+      &::placeholder {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    [type="submit"] {
+      cursor: pointer;
+    }
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+  }
+}

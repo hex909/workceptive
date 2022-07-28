@@ -1,0 +1,156 @@
+@use "../variables" as v;
+
+.wedo {
+  padding: 1rem;
+  max-width: 1400px;
+  margin-inline: auto;
+
+  &__container {
+    text-align: center;
+
+    h3 {
+      color: v.$secondary;
+      font-size: 2rem;
+      font-weight: 900;
+
+      @media (max-width: 400px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    img {
+      width: 38px;
+    }
+  }
+
+  .accordion {
+    .items-container {
+      list-style: none;
+      position: relative;
+      overflow: hidden;
+      padding: 1rem;
+
+      .item {
+        width: 33.33%;
+        margin-bottom: 1rem;
+
+        @media (max-width: 960px) {
+          & {
+            width: 95%;
+            margin-inline: auto;
+          }
+        }
+
+        &:hover,
+        &.is-active {
+          box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        &.is-active {
+          .top>h3>button>svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        .top {
+          h3 {
+            height: 70px;
+
+            button {
+              font-size: 1rem;
+              display: flex;
+              gap: 1rem;
+              width: 100%;
+
+              &:focus {
+                box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.2);
+              }
+            }
+
+            cursor: pointer;
+
+            &>button {
+              padding: 0.71rem;
+              background-color: transparent;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              height: 100%;
+              border: none;
+              outline: none;
+
+              div {
+                border-radius: 50%;
+                background-color: rgb(126, 0, 0);
+                overflow: hidden;
+
+                .image {
+                  min-width: 25px;
+                  min-height: 25px;
+                  display: block;
+                  object-fit: cover;
+                }
+
+              }
+
+              svg {
+                transition: transform 250ms;
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+
+        &.is-active .bottom {
+          .para-c {
+            padding-top: 0;
+            max-height: 500px;
+          }
+
+          img {
+            max-height: 500px;
+            top: 0;
+            right: 0;
+            padding-left: 3rem;
+            opacity: 1;
+            transform: translateY(5%);
+            object-fit: contain;
+
+            @media (max-width: 960px) {
+              & {
+                position: static;
+                display: block;
+                width: 100%;
+                padding: 0.5rem;
+                transform: translateY(0);
+              }
+            }
+          }
+        }
+
+        .bottom {
+          overflow: hidden;
+
+          .para-c {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 250ms ease;
+
+            p {
+              margin: .71rem;
+            }
+          }
+
+          img {
+            opacity: 0;
+            position: absolute;
+            max-height: 0;
+            width: 66.66%;
+            transform: translateY(70%);
+            transition: opacity 1500ms, transform 550ms;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@forward "reset";
+@forward "./components/index";
+@forward "./pages/index";
+
+@use "./variables" as variable;
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+
+  .special {
+    position: relative;
+    color: variable.$secondary;
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 5px;
+      background-color: variable.$secondary;
+      position: absolute;
+      bottom: 0;
+      border-radius: 5px;
+    }
+  }
+}

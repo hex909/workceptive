@@ -1,0 +1,48 @@
+@use "./variables" as v;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+::-moz-selection {
+  color: white;
+  background: v.$secondary;
+}
+
+::selection {
+  color: white;
+  background: v.$secondary;
+}
+
+img {
+  max-width: 100%;
+}
+
+.image {
+  width: 15px;
+  height: 15px;
+  background-color: v.$secondary;
+  border-radius: 50%;
+}
+
+ul {
+  list-style: none;
+  li a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.divider {
+  border: 1px solid rgba(83, 83, 83, 0.726);
+  margin: 1rem 0;
+}

@@ -1,0 +1,14 @@
+home {
+
+    section01 : "700x600",
+    section02 : "900x500",
+    section03 : "1400*400",
+    section05 : "190x110,
+},
+about {
+
+    section01 : "600x450",
+    section02 : "330x390",
+    section03 : "680x400",
+    section04 : "330x180,
+}

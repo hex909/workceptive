@@ -1,0 +1,168 @@
+@use "../variables" as variable;
+
+.footer {
+  width: 100%;
+  background-color: variable.$footerBG;
+  padding: 2rem;
+  padding-bottom: 1rem;
+
+  .columns {
+    display: flex;
+    justify-content: space-around;
+
+    .logo_details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .mail__to {
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.568);
+        padding: 1rem;
+        max-width: 300px;
+
+        .mail_icon {
+          font-size: 2rem;
+        }
+
+        .email_container {
+          .email {
+            color: white;
+            font-size: 1.1rem;
+            transition: color 250ms;
+
+            &:hover {
+              color: variable.$secondary;
+            }
+          }
+        }
+      }
+
+      address,
+      .mobile {
+        color: white;
+        font-style: normal;
+        font-size: 1rem;
+        display: flex;
+        gap: 1rem;
+
+        .title-span {
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .links {
+      display: flex;
+      gap: 5rem;
+
+      .items {
+        h4 {
+          font-size: 1.1rem;
+          color: #b6b6b6;
+          padding-bottom: 1rem;
+          cursor: default;
+          font-weight: 600;
+          text-transform: capitalize;
+        }
+
+        a {
+          display: block;
+          padding-bottom: 1rem;
+          font-weight: 600;
+          transition: color 250ms;
+          text-transform: capitalize;
+
+
+          &:hover,
+          &:focus {
+            color: variable.$secondary;
+          }
+        }
+      }
+
+      @media (max-width: 535px) {
+        flex-direction: column;
+        gap: 3rem;
+        // width: 100%;
+      }
+    }
+
+    @media (max-width: 940px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    @media (max-width: 535px) {
+      flex-direction: column;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+  }
+
+  .columns-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .social {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      color: white;
+
+      span {
+        display: flex;
+        gap: 0.81rem;
+
+        a:hover {
+          svg {
+            color: variable.$secondary;
+          }
+        }
+
+        svg {
+          font-size: 1.5rem;
+          color: white;
+          transition: color 250ms;
+        }
+      }
+    }
+
+    .termsDetails {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+
+      a {
+        color: #b6b6b6;
+        text-decoration: none;
+        transition: color 250ms;
+        font-weight: 500;
+        font-size: 0.8rem;
+
+        &:hover {
+          color: variable.$secondary;
+        }
+      }
+
+      @media (max-width: 535px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+
+    .copyright {
+      font-size: 0.91rem;
+      color: white;
+      text-align: center;
+    }
+  }
+}
