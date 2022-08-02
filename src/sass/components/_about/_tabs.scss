@@ -1,4 +1,4 @@
-@use "../variables" as variable;
+@use "../../variables" as variable;
 
 .tabs {
   margin-top: 3rem;
@@ -140,6 +140,12 @@
 
     @media (max-width: 750px) {
       flex-direction: column;
+      color: white;
+
+      &.is-active {
+
+        height: auto;
+      }
 
       .image_bg {
         width: 100%;

@@ -1,4 +1,4 @@
-function Otherfiled({ data }) {
+function Otherfiled({ data, purify }) {
   return (
     <section
       className="block"
@@ -9,7 +9,7 @@ function Otherfiled({ data }) {
         style={{ backgroundImage: `url(${data.Backgroundimage})` }}
       ></div>
       <div className="container">
-        <h3>{data.Heading}</h3>
+        <h3 dangerouslySetInnerHTML={purify(data.Heading)}></h3>
         <div className="buttons">
           <div>
             {data.button1.map((ele, index) => (

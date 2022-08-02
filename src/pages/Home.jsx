@@ -5,20 +5,25 @@ import Subscribe from "../components/_home/Subscribe";
 import OurClients from "../components/_home/OurClients";
 import { useValues } from "../Context";
 
-import React from "react";
+import { useEffect } from "react";
 
 function Home() {
-  let { homeData } = useValues();
-  return (
-    homeData.success && (
-      <>
-        <Hero data={homeData.data.Section1} />
-        <WeDo data={homeData.data.Section2} />
-        <Otherfield data={homeData.data.Section3} />
-        <Subscribe />
-        <OurClients data={homeData.data.Section5} />
-      </>
-    )
+  let { homeData, purify, loading, setLoading } = useValues();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  return !loading && homeData.success ? (
+    <>
+      <Hero data={homeData.data.Section1} purify={purify} />
+      <WeDo data={homeData.data.Section2} purify={purify} />
+      <Otherfield data={homeData.data.Section3} purify={purify} />
+      <Subscribe />
+      <OurClients data={homeData.data.Section5} />
+    </>
+  ) : (
+    <div style={{ height: "100vh" }}></div>
   );
 }
 

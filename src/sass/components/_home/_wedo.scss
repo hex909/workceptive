@@ -1,4 +1,4 @@
-@use "../variables" as v;
+@use "../../variables" as v;
 
 .wedo {
   padding: 1rem;
@@ -70,6 +70,13 @@
             cursor: pointer;
 
             &>button {
+
+              @media (max-width: 450px) {
+                span {
+                  margin: auto;
+                }
+              }
+
               padding: 0.71rem;
               background-color: transparent;
               cursor: pointer;
@@ -97,6 +104,7 @@
                 transition: transform 250ms;
                 font-size: 1.2rem;
               }
+
             }
           }
         }

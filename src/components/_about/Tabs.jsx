@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useValues } from "../../Context";
 function Tabs({ tabs }) {
+  const { purify } = useValues();
+
   const [tab, setTab] = useState("tab-01");
 
   return (
@@ -33,10 +36,10 @@ function Tabs({ tabs }) {
               className={`content ${tab === tabID && "is-active"}`}
             >
               <div>
-                <p>{ele["Paragraph 1"]}</p>
+                <p dangerouslySetInnerHTML={purify(ele["Paragraph 1"])}></p>
               </div>
               <div className="last">
-                <p>{ele["Paragraph 2"]}</p>
+                <p dangerouslySetInnerHTML={purify(ele["Paragraph 2"])}></p>
               </div>
               <img src={ele.Image} alt="" className="image_bg" />
             </div>

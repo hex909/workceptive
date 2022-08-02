@@ -1,0 +1,204 @@
+@use '../../variables' as variable;
+
+.footer {
+    background-color: variable.$footer-bg;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-inline: 1rem;
+
+
+    .logo {
+        max-width: 1440px;
+        margin-inline: auto;
+        margin-bottom: 1.9rem;
+
+        .flex {
+            display: flex;
+            align-items: center;
+            user-select: none;
+
+            span {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: white;
+            }
+        }
+    }
+
+    .footer-links {
+        max-width: 1440px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: minmax(auto, 600px) 1fr;
+        gap: 1.5rem;
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+
+            .items {
+                h4 {
+                    font-size: 1.375rem;
+                    font-weight: 600;
+                    color: white;
+                    margin-bottom: 1.5rem;
+                    white-space: nowrap;
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5rem;
+
+                    .footer-link {
+                        color: #7B8CA4;
+                        font-weight: 500;
+                        transition: 400ms;
+
+                        &:hover {
+                            color: white
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        .footer-address {
+            width: 350px;
+            color: #818C9D;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            padding: .5rem;
+
+            .foot-container {
+                min-height: 230px;
+                background-color: #303E4E;
+                padding: 2rem;
+                border-radius: 85px 0 85px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                padding-left: 1rem;
+
+                div {
+                    text-align: right;
+                    margin-bottom: 1.5rem;
+
+                    p {
+                        margin-bottom: .2rem;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: variable.$primary;
+                        font-weight: 500;
+                        transition: 400ms;
+
+                        &:hover {
+                            color: lighten(variable.$primary, 20)
+                        }
+                    }
+                }
+
+                address {
+                    text-align: right;
+                }
+            }
+
+            .social-icons {
+                margin-top: 1rem;
+
+                ul {
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    li {
+                        a {
+                            font-size: 1.7rem;
+                            transition: 400ms;
+
+                            &:hover {
+                                color: variable.$secondary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .foot {
+        max-width: 1440px;
+        margin-inline: auto;
+        color: #DFE7EF;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        ul {
+            display: flex;
+            gap: 2rem;
+
+            li {
+                a {
+                    color: #BBC3CB;
+                    font-weight: 500;
+                    transition: 400ms;
+                    text-decoration: underline;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 1rem;
+                }
+            }
+
+        }
+    }
+
+
+    @media (max-width: 780px) {
+        .footer-links {
+            grid-template-columns: 1fr;
+
+            .links {
+                justify-content: space-evenly;
+            }
+
+            .footer-address {
+                justify-self: center;
+            }
+
+        }
+
+        .foot {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            ul {
+                margin-top: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .footer-links {
+            .footer-address {
+                width: 95%;
+            }
+        }
+    }
+}

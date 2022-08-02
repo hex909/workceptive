@@ -1,5 +1,5 @@
 @forward "reset";
-@forward "./components/index";
+@forward "./components/_global/index";
 @forward "./pages/index";
 
 @use "./variables" as variable;

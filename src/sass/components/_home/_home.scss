@@ -1,4 +1,4 @@
-@use "../variables" as variable;
+@use "../../variables" as variable;
 
 .hero {
   width: 100%;
@@ -38,6 +38,7 @@
   &__two {
     align-self: center;
     max-width: 700px;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
     .image {
       display: block;

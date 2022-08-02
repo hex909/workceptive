@@ -1,5 +1,12 @@
 import gsap from "gsap";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import DOMPurify from "dompurify";
 
 const UserContext = createContext();
 
@@ -13,9 +20,7 @@ function reducer(state, action) {
   if (action.type === "GET_CONTACT_DATA") {
     return { ...state, contactData: action.data };
   }
-  if (action.type === "FALSE_LOADING") {
-    return { ...state, loading: false };
-  }
+
   if (action.type === "GET_FOOTER_DATA") {
     return { ...state, footerData: action.data };
   }
@@ -23,13 +28,19 @@ function reducer(state, action) {
 }
 
 function ContextProvider({ children }) {
+  const [loading, setLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, {
     aboutData: {},
     contactData: {},
     homeData: {},
     footerData: {},
-    loading: true,
   });
+
+  function purify(text) {
+    return {
+      __html: DOMPurify.sanitize(text),
+    };
+  }
 
   let requestOptions = {
     method: "POST",
@@ -37,29 +48,24 @@ function ContextProvider({ children }) {
   };
 
   useEffect(() => {
-    let tl;
-    if (
-      state.homeData.success &&
-      state.aboutData.success &&
-      state.footerData.success &&
-      state.contactData.success
-    ) {
-      dispatch({ type: "FALSE_LOADING" });
+    let tl = gsap.timeline({});
+    if (!loading) {
       document.querySelector(".loading").classList.add("is-done");
-      tl = gsap.timeline();
 
-      tl.to(".loading.is-done", { width: 0, duration: 2 })
-        .to(".loading.is-done", { opacity: 0, duration: 0.5 }, "-=.5")
-        .to(".loading.is-done h1", { opacity: 0, duration: 0.5 }, "<=-1")
-        .to(".loading.is-done", { display: "none" });
+      tl.to(".loading .loading-image", { opacity: 0, duration: 0.2 })
+        .to(".loading.is-done ul li", {
+          scaleY: 0,
+          stagger: 0.2,
+          duration: 1,
+        })
+        .to(".loading.is-done", { display: "none" })
+        .to("body", { height: "auto", overflowY: "visible" });
     }
 
     return () => {
-      if (tl) {
-        tl.kill();
-      }
+      if (loading) tl.kill();
     };
-  }, [state.homeData, state.aboutData, state.contactData, state.footerData]);
+  }, [loading]);
 
   useEffect(() => {
     fetch(
@@ -101,9 +107,11 @@ function ContextProvider({ children }) {
         homeData: state.homeData,
         aboutData: state.aboutData,
         footerData: state.footerData,
-        loading: state.loading,
         contactData: state.contactData,
         dispatch,
+        purify,
+        loading,
+        setLoading,
       }}
     >
       {children}

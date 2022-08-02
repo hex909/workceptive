@@ -1,0 +1,96 @@
+@use "../../variables" as v;
+
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-bottom: 4rem;
+  text-align: center;
+
+  .contain {
+    .title {
+      color: v.$secondary;
+      font-size: 2rem;
+      font-weight: 900;
+      padding-bottom: 2rem;
+      margin-left: 1.2rem;
+
+      @media (max-width: 400px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .btn {
+    background-color: v.$secondary;
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($color: v.$secondary, $amount: 10);
+    }
+  }
+
+  .clients {
+    display: flex;
+    width: 100%;
+    min-height: 110px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    .client {
+      min-height: 110px;
+
+      .client-image {
+        position: relative;
+        min-width: 190px;
+
+        &[data-is-image="true"] {
+          img {
+            opacity: 1;
+            visibility: inherit;
+          }
+        }
+
+        img {
+          position: absolute;
+          width: 100%;
+          visibility: hidden;
+          opacity: 0;
+          display: block;
+          object-fit: cover;
+          top: 0;
+          left: 0;
+          transition: 4000ms;
+        }
+      }
+
+    }
+
+    @media (max-width: 1080px) {
+      .client {
+        &[data-client="five"] {
+          display: none;
+        }
+      }
+    }
+
+    @media (max-width: 900px) {
+      .client {
+        &[data-client="four"] {
+          display: none;
+        }
+      }
+    }
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+    }
+
+  }
+
+}

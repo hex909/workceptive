@@ -1,88 +1,88 @@
-import { FaFacebook } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import wTextImg from "/image/logo-w.png";
+import LogoImg from "/image/logo-only.png";
 import {
-  AiFillTwitterCircle,
-  AiOutlineInstagram,
+  AiFillTwitterSquare,
+  AiFillInstagram,
   AiFillLinkedin,
+  AiFillFacebook,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useValues } from "../Context";
+import React from "react";
 
 function Footer() {
   const { contactData, footerData } = useValues();
+
   return (
     contactData.success &&
     footerData.success && (
       <footer className="footer">
-        <section>
-          <div
-            className="columns"
-            style={{ maxWidth: "1400px", marginInline: "auto" }}
-          >
-            <div className="logo_details">
-              <div className="img__container">
-                <img src={wTextImg} alt="workceptive logo with text" />
+        <div className="logo">
+          <div className="flex">
+            <img src={LogoImg} alt="Image logo" />
+            <span>Workceptive</span>
+          </div>
+        </div>
+        <div className="footer-links">
+          <div className="links">
+            {footerData.data.map((element, index) => {
+              return (
+                <FooterLinks
+                  key={index}
+                  section={element.Section}
+                  links={element.Link}
+                />
+              );
+            })}
+          </div>
+          <div className="footer-address">
+            <div className="foot-container">
+              <div>
+                <p className="phone">{contactData.data.phone}</p>
+                <a href={"mailto:" + contactData.data.email} className="email">
+                  {contactData.data.email}
+                </a>
               </div>
-              <div className="mail__to">
-                <MdEmail className="mail_icon" />
-                <div className="email_container">
-                  <p className="email__title">Contact us at:</p>
-                  <a className="email" href="mailto:info.workceptive.com">
-                    {contactData.data.email}
+              <address className="address">{contactData.data.address}</address>
+            </div>
+
+            <div className="social-icons">
+              <ul>
+                <li>
+                  <a href="/facebook">
+                    <AiFillLinkedin />
                   </a>
-                </div>
-              </div>
-
-              <address>
-                <span className="title-span">Address: </span>
-                <span className="detail-span" style={{ maxWidth: "35ch" }}>
-                  {contactData.data.address}
-                </span>
-              </address>
-              <p className="mobile">
-                <span className="title-span">Phone: </span>
-                {contactData.data.phone}
-              </p>
-            </div>
-            <div className="links">
-              {footerData.data.map((element, index) => {
-                return (
-                  <FooterLinks
-                    key={index}
-                    section={element.Section}
-                    links={element.Link}
-                  />
-                );
-              })}
+                </li>
+                <li>
+                  <a href="/facebook">
+                    <AiFillTwitterSquare />
+                  </a>
+                </li>
+                <li>
+                  <a href="/facebook">
+                    <AiFillInstagram />
+                  </a>
+                </li>
+                <li>
+                  <a href="/facebook">
+                    <AiFillFacebook />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
 
-        <hr className="divider" />
-
-        <section className="columns-bottom">
-          <div className="social">
-            <h4>Follow us on:</h4>
-            <span>
-              <a href="https://twitter.com">
-                <AiFillTwitterCircle />
-              </a>
-              <a href="https://instagram.com">
-                <AiOutlineInstagram />
-              </a>
-              <a href="https://linkedin.com">
-                <AiFillLinkedin />
-              </a>
-            </span>
-          </div>
-          <div className="termsDetails">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms &amp; Conditions</a>
-            <a href="/return">Return Policy</a>
-          </div>
-          <p className="copyright">Copyright &copy; 2022 Workceptive. </p>
-        </section>
+        <div className="foot">
+          <p>Copyright 2022 Workceptive. All rights reserved.</p>
+          <ul>
+            <li>
+              <a href="/terms">Terms and Conditions</a>
+            </li>
+            <li>
+              <a href="/privacy-policy">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
       </footer>
     )
   );
@@ -96,7 +96,9 @@ function FooterLinks({ section, links = [] }) {
         {links.map((ele, index) => {
           return (
             <li key={index}>
-              <Link to={ele.Link}>{ele.Heading}</Link>
+              <Link className="footer-link" to={ele.Link}>
+                {ele.Heading}
+              </Link>
             </li>
           );
         })}
@@ -105,4 +107,4 @@ function FooterLinks({ section, links = [] }) {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

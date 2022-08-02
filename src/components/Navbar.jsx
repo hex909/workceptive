@@ -3,13 +3,35 @@ import { FiMenu } from "react-icons/fi";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 
+import gsap from "gsap";
+
 function Navbar({ setIsModel, isModel }) {
   const [isBurger, setIsBurger] = useState(false);
   const header = useRef(null);
+
+  function scroller() {
+    header.current.classList.toggle("sticky", window.scrollY > 200);
+  }
+
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      header.current.classList.toggle("sticky", window.scrollY > 100);
+    window.addEventListener("scroll", scroller);
+
+    return () => {
+      window.removeEventListener("scroll", scroller);
+    };
+  }, []);
+
+  useEffect(() => {
+    let from = gsap.from(".navbar-brand span", {
+      x: -25,
+      duration: 1,
+      opacity: 0.5,
+      immediateRender: false,
     });
+
+    return () => {
+      from.kill();
+    };
   }, []);
 
   useEffect(() => {
@@ -41,14 +63,18 @@ function Navbar({ setIsModel, isModel }) {
           <NavLink
             to="/about"
             className="navbar__item"
-            onClick={() => setIsBurger((e) => !e)}
+            onClick={() => {
+              setIsBurger((e) => !e);
+            }}
           >
             About
           </NavLink>
           <NavLink
             to="contact"
             className="navbar__item"
-            onClick={() => setIsBurger((e) => !e)}
+            onClick={() => {
+              setIsBurger((e) => !e);
+            }}
           >
             Contact
           </NavLink>

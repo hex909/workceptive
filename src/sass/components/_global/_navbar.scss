@@ -1,4 +1,4 @@
-@use "../variables" as v;
+@use "../../variables" as v;
 
 header {
   box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.321);
@@ -8,9 +8,9 @@ header {
   left: 0;
   transition: all 250ms;
   z-index: 100;
-  position: sticky;
 
   &.sticky {
+    position: sticky;
     background-color: white;
   }
 }
@@ -43,6 +43,7 @@ header {
         font-size: 1.5rem;
         font-weight: 600;
         color: rgb(37, 37, 37);
+        overflow: hidden;
       }
 
       img {
@@ -98,7 +99,7 @@ header {
     &::after {
       content: "";
       width: 0%;
-      height: 5px;
+      height: 2px;
       background-color: v.$secondary;
       border-radius: 5px;
       top: 100%;
@@ -135,6 +136,10 @@ header {
       overflow: hidden;
       padding: 0rem;
       transition: width 250ms ease-out, padding 250ms ease-out;
+
+      .navbar__item {
+        width: min-content;
+      }
 
       &.is-active {
         width: 60%;

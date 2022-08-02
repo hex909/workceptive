@@ -1,13 +1,56 @@
+import { useEffect } from "react";
 import Clients from "../components/_about/Clients";
 import RequsetCallback from "../components/_about/RequsetCallback";
 import Tabs from "../components/_about/Tabs";
 import WorkCard from "../components/_about/WorkCard";
 import { useValues } from "../Context";
+import gsap from "gsap";
+import { useRef } from "react";
 
 function About() {
-  let { aboutData } = useValues();
+  let { aboutData, purify, loading, setLoading } = useValues();
+  let feature_scroll = useRef(null);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  let pos = { x: 0, left: 0 };
+
+  const mouseDownHandler = function (e) {
+    feature_scroll.current.style.cursor = "grabbing";
+    pos = {
+      left: feature_scroll.current.scrollLeft,
+      x: e.clientX,
+    };
+
+    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
+  };
+
+  const mouseMoveHandler = function (e) {
+    const dx = e.clientX - pos.x;
+    feature_scroll.current.scrollLeft = pos.left - dx;
+  };
+
+  const mouseUpHandler = function () {
+    document.removeEventListener("mousemove", mouseMoveHandler);
+    document.removeEventListener("mouseup", mouseUpHandler);
+
+    feature_scroll.current.style.cursor = "grab";
+  };
+
+  function animateImage() {
+    gsap.to(".img__container", {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      delay: 0.5,
+      duration: 1,
+      ease: "power2.ease",
+    });
+  }
 
   return (
+    !loading &&
     aboutData.success && (
       <>
         <article className="about maxWidth">
@@ -23,12 +66,18 @@ function About() {
                 />
               </div>
               <div className="about__content">
-                <p className="shot__para">
-                  {aboutData.data.Section1["Paragraph 1"]}
-                </p>
-                <p className="long__para">
-                  {aboutData.data.Section1["Paragraph 2"]}
-                </p>
+                <p
+                  className="shot__para"
+                  dangerouslySetInnerHTML={purify(
+                    aboutData.data.Section1["Paragraph 1"]
+                  )}
+                ></p>
+                <p
+                  className="long__para"
+                  dangerouslySetInnerHTML={purify(
+                    aboutData.data.Section1["Paragraph 2"]
+                  )}
+                ></p>
               </div>
             </div>
           </section>
@@ -36,10 +85,20 @@ function About() {
           <section className="works">
             <h2 className="title">
               Our{" "}
-              <span className="special">{aboutData.data.Section2.Heading}</span>
+              <span
+                className="special"
+                dangerouslySetInnerHTML={purify(
+                  aboutData.data.Section2.Heading
+                )}
+              ></span>
             </h2>
 
-            <div className="cards">
+            <div
+              className="cards"
+              ref={feature_scroll}
+              onMouseDown={mouseDownHandler}
+            >
+              <div className="cursor"></div>
               {aboutData.data.Section2.slide.map((e, i) => {
                 return (
                   <WorkCard

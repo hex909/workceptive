@@ -1,6 +1,8 @@
 import React from "react";
+import { useValues } from "../../Context";
 
 function FeedCard({ card }) {
+  const { purify } = useValues();
   return (
     <>
       {card.map((ele, index) => {
@@ -11,8 +13,11 @@ function FeedCard({ card }) {
               <img src={ele.Image} alt="" className="image_card" />
             </div>
             <div className="content">
-              <h3 className="content__title">{ele.Heading}</h3>
-              <p>{ele.Details}</p>
+              <h3
+                className="content__title"
+                dangerouslySetInnerHTML={purify(ele.Heading)}
+              ></h3>
+              <p dangerouslySetInnerHTML={purify(ele.Details)}></p>
             </div>
           </div>
         );

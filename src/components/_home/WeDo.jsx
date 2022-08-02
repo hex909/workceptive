@@ -1,20 +1,46 @@
-import { useLayoutEffect } from "react";
 import { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { observer } from "../../scripts/lazyLoad";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function WeDo({ data }) {
+gsap.registerPlugin(ScrollTrigger);
+
+function WeDo({ data, purify }) {
   const [isActive, setIsActive] = useState("1");
+  let tl;
 
   useEffect(() => {
     const images = document.querySelectorAll("[data-src]");
     if (images) images.forEach((image) => observer.observe(image));
   }, []);
 
+  useEffect(() => {
+    let to = gsap.to(".wedo__container .title", {
+      scrollTrigger: {
+        trigger: ".wedo__container .title",
+        start: "bottom 70%",
+      },
+      opacity: 1,
+      immediateRender: false,
+      duration: 1,
+      ease: "back.out(1.7)",
+      y: 0,
+    });
+
+    return () => {
+      to.kill();
+    };
+  }, []);
+
   return (
     <article className="wedo">
       <div className="wedo__container">
-        <h3 className="title">{data.Heading}</h3>
+        <h3
+          className="title"
+          dangerouslySetInnerHTML={purify(data.Heading)}
+          style={{ opacity: 0, transform: "translateY(15px)" }}
+        ></h3>
         {/* <img src="/image/logo-only.png" alt="logo image" /> */}
       </div>
 
@@ -29,6 +55,7 @@ function WeDo({ data }) {
                 setIsActive={setIsActive}
                 isActive={isActive}
                 section={element}
+                purify={purify}
               />
             );
           })}
@@ -38,7 +65,7 @@ function WeDo({ data }) {
   );
 }
 
-function AccordionItem({ index, setIsActive, isActive, section }) {
+function AccordionItem({ index, setIsActive, isActive, section, purify }) {
   return (
     <li className={`item ${isActive === index.toString() ? "is-active" : ""}`}>
       <div className="top">
@@ -54,14 +81,14 @@ function AccordionItem({ index, setIsActive, isActive, section }) {
             {/* <div>
               <img src={imgSRC} alt="" className="image" />
             </div> */}
-            {section.Heading}
+            <span dangerouslySetInnerHTML={purify(section.Heading)}></span>
           </button>
         </h3>
       </div>
 
       <div className="bottom">
         <div className="para-c">
-          <p>{section.Details}</p>
+          <p dangerouslySetInnerHTML={purify(section.Details)}></p>
         </div>
         <img
           data-src={section.Image}

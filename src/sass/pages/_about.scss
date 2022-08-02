@@ -1,4 +1,5 @@
 @use "../variables" as variable;
+@forward '../components/_about/';
 
 .about {
   padding: 1rem;
@@ -27,14 +28,17 @@
     .img__container {
       width: 100%;
       overflow: hidden;
-      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.162);
       max-width: 600px;
       min-width: 500px;
       border-radius: 5px;
+      // min-height: 200px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.162);
+      // clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
       &__placeholder {
-        height: 450px;
+        height: 100%;
         object-fit: cover;
+        display: block;
       }
     }
 
@@ -73,31 +77,8 @@
     width: 100%;
     overflow: hidden;
     margin-top: 2rem;
-    padding: 0 2rem;
+    // padding: 0 2rem;
     position: relative;
-
-    // &::after,
-    // &::before {
-    //   content: "";
-    //   width: 250px;
-    //   height: 250px;
-    //   background-color: variable.$secondary;
-    //   border-radius: 50%;
-    //   position: absolute;
-    //   z-index: -5;
-    //   left: calc(100% - 250px + 1rem);
-    //   top: 0;
-    // }
-
-    // &::after {
-    //   left: 0;
-    //   top: 10px;
-    // }
-
-    // &::before {
-    //   left: calc(100% - 250px + 60px);
-    //   top: calc(100% - 250px);
-    // }
 
     &::after {
       content: "";
@@ -121,12 +102,24 @@
     .cards {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 3rem;
-      justify-content: center;
       margin-top: 2rem;
       position: relative;
+      transform: translateX(-50%);
+      left: 50%;
       width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding: 1rem;
+      scroll-behavior: smooth;
+      user-select: none;
+      scrollbar-width: none;
+      cursor: grab;
+      scroll-behavior: smooth;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     @media (max-width: 450px) {

@@ -1,9 +1,9 @@
-@use "../variables" as variable;
+@use "../../variables" as variable;
 
 .card {
   position: relative;
-  width: 330px;
-  height: 390px;
+  min-width: 300px;
+  height: 360px;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.212);
   background-color: white;
   border-radius: 5px;
