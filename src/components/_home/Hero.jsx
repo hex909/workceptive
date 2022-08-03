@@ -6,6 +6,9 @@ function Hero({ data, purify }) {
   let tl = gsap.timeline();
   let to;
 
+  let moveForce = 30; // max popup movement in pixels 30
+  let rotateForce = 20; // max popup rotation in deg 20
+
   function animateImage() {
     tl.to(
       heroImageContainer.current,
@@ -19,6 +22,27 @@ function Hero({ data, purify }) {
   }
 
   useLayoutEffect(() => {
+    // let sectionHero = document.querySelector("html");
+    // function imageMoveAnimation(e) {
+    //   let docX = sectionHero.clientWidth;
+    //   let docY = sectionHero.clientHeight;
+
+    //   let moveX = ((e.pageX - docX / 2) / (docX / 2)) * -moveForce;
+    //   let moveY = ((e.pageY - docY / 2) / (docY / 2)) * -moveForce;
+
+    //   let rotateY = (e.pageX / docX) * rotateForce * 2 - rotateForce;
+    //   let rotateX = -((e.pageY / docY) * rotateForce * 2 - rotateForce);
+
+    //   gsap.to(heroImageContainer.current, {
+    //     top: moveY,
+    //     left: moveX,
+    //     rotateX: rotateX,
+    //     rotateY: rotateY,
+    //     ease: "elastic.out(1, 0.3)",
+    //   });
+    // }
+
+    // sectionHero.addEventListener("mousemove", imageMoveAnimation);
     to = gsap.to(".hero__one h1, .hero__one p", {
       opacity: 1,
       x: 0,
@@ -27,6 +51,7 @@ function Hero({ data, purify }) {
     });
 
     return () => {
+      // sectionHero.removeEventListener("mousemove", imageMoveAnimation);
       to.kill();
     };
   }, []);

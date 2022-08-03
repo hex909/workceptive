@@ -31,6 +31,8 @@ function Contact() {
 
   useEffect(() => {
     setLoading(false);
+    document.documentElement.querySelector("title").textContent =
+      "Contact - Workceptive";
   }, []);
 
   return (

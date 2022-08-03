@@ -10,7 +10,7 @@
     width: 60%;
     min-width: 440px;
     min-height: calc(100vh - variable.$nav_height);
-    background-color: variable.$secondary;
+    background-color: variable.$contact-bg;
     padding: 45px 51px;
     color: white;
     display: flex;
@@ -20,9 +20,8 @@
     .map {
       width: 100%;
       height: 300px;
-      background-color: rgb(140, 255, 140);
+      background-color: rgb(228, 228, 228);
       border-radius: 10px;
-      box-shadow: inset 0 0 0 12px white;
       margin-bottom: 1rem;
       border: none;
     }

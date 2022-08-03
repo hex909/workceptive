@@ -1,5 +1,3 @@
-@use "../../variables" as v;
-
 .wedo {
   padding: 1rem;
   max-width: 1400px;
@@ -9,7 +7,6 @@
     text-align: center;
 
     h3 {
-      color: v.$secondary;
       font-size: 2rem;
       font-weight: 900;
 
@@ -88,7 +85,7 @@
 
               div {
                 border-radius: 50%;
-                background-color: rgb(126, 0, 0);
+
                 overflow: hidden;
 
                 .image {

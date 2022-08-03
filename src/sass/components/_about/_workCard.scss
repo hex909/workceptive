@@ -23,7 +23,7 @@
 
   &::after {
     content: "";
-    background-color: darken(variable.$secondary, 25);
+    background-color: variable.$works-after-element-bg;
     width: 105px;
     height: 105px;
     position: absolute;

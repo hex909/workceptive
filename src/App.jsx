@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 // components
 import Layout from "./Layout";
@@ -12,6 +12,11 @@ import "./sass/index.scss";
 
 function App() {
   const [isModel, setIsModel] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <Routes>

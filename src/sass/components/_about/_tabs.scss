@@ -18,9 +18,10 @@
       flex: 1;
       display: block;
       text-align: center;
-      border-left: 1px solid rgb(138, 138, 138);
-      border-right: 1px solid rgb(138, 138, 138);
+      // border-left: 1px solid rgb(138, 138, 138);
+      // border-right: 1px solid rgb(138, 138, 138);
       transition: background-color 450ms, color 400ms;
+      box-shadow: 0 0 1px 1px rgba(116, 116, 116, 0.219);
 
       &:nth-child(2n),
       &:first-child {
@@ -32,7 +33,7 @@
       }
 
       &.is-active {
-        background-color: variable.$secondary;
+        background-color: variable.$tabs-active-color;
 
         a {
           &:hover {
@@ -59,7 +60,7 @@
         cursor: default;
 
         &:hover {
-          background-color: lighten($color: variable.$secondary, $amount: 26);
+          background-color: variable.$tabs-hover-color;
         }
       }
     }

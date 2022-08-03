@@ -56,6 +56,7 @@ header {
     display: flex;
     gap: 4rem;
     margin-right: 1rem;
+    z-index: 20;
 
     .nav-btn {
       white-space: nowrap;

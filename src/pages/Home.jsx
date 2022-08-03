@@ -12,6 +12,8 @@ function Home() {
 
   useEffect(() => {
     setLoading(false);
+    document.documentElement.querySelector("title").textContent =
+      "Workceptive | IT and IT enabled Service Provider";
   }, []);
 
   return !loading && homeData.success ? (

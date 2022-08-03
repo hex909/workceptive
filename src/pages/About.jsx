@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
 import Clients from "../components/_about/Clients";
 import RequsetCallback from "../components/_about/RequsetCallback";
 import Tabs from "../components/_about/Tabs";
 import WorkCard from "../components/_about/WorkCard";
 import { useValues } from "../Context";
 import gsap from "gsap";
-import { useRef } from "react";
 
 function About() {
   let { aboutData, purify, loading, setLoading } = useValues();
@@ -13,6 +13,8 @@ function About() {
 
   useEffect(() => {
     setLoading(false);
+    document.documentElement.querySelector("title").textContent =
+      "About - Workceptive";
   }, []);
 
   let pos = { x: 0, left: 0 };
@@ -98,7 +100,6 @@ function About() {
               ref={feature_scroll}
               onMouseDown={mouseDownHandler}
             >
-              <div className="cursor"></div>
               {aboutData.data.Section2.slide.map((e, i) => {
                 return (
                   <WorkCard

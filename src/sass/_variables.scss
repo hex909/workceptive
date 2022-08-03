@@ -1,4 +1,37 @@
 $primary: #fe6308;
 $secondary: #fb8965;
 $footer-bg: #25303f;
+
+
+$btn-bg: #3b1e14;
+$btn-bg-hover: lighten($btn-bg, 10);
+
+$text-color: #252525;
+$special-text-color: $secondary;
+
+
+$border-color: #dfdfdf;
 $nav_height: 70px;
+
+
+$navbar-links-color: $text-color;
+$navbar-links-hover-color: $primary;
+
+$input-border: #dfdfdf;
+
+
+
+// home section 
+$subscribe-bg: #ff3c00;
+
+
+// about section
+$works-after-element-bg: #f30000;
+$tabs-active-color: $primary;
+$tabs-hover-color: lighten($secondary, 26);
+$feed-line-bg: $secondary;
+$request-bg: $secondary;
+
+// contact section 
+
+$contact-bg: lighten($footer-bg, 5);

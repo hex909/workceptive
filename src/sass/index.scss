@@ -10,15 +10,15 @@
 
   .special {
     position: relative;
-    color: variable.$secondary;
+    color: variable.$special-text-color;
 
     &::before {
       content: "";
       width: 100%;
-      height: 5px;
+      height: 3px;
       background-color: variable.$secondary;
       position: absolute;
-      bottom: 0;
+      bottom: -5px;
       border-radius: 5px;
     }
   }
