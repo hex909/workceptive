@@ -4,7 +4,7 @@ import { useValues } from "../Context";
 import { useEffect } from "react";
 
 function Contact() {
-  const { contactData, setLoading, loading } = useValues();
+  const { contactData, loading } = useValues();
 
   const initialValues = {
     f_name: "",
@@ -30,7 +30,6 @@ function Contact() {
   });
 
   useEffect(() => {
-    setLoading(false);
     document.documentElement.querySelector("title").textContent =
       "Contact - Workceptive";
   }, []);

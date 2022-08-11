@@ -8,11 +8,10 @@ import { useValues } from "../Context";
 import gsap from "gsap";
 
 function About() {
-  let { aboutData, purify, loading, setLoading } = useValues();
+  let { aboutData, purify, loading } = useValues();
   let feature_scroll = useRef(null);
 
   useEffect(() => {
-    setLoading(false);
     document.documentElement.querySelector("title").textContent =
       "About - Workceptive";
   }, []);

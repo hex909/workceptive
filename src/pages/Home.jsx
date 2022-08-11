@@ -8,10 +8,9 @@ import { useValues } from "../Context";
 import { useEffect } from "react";
 
 function Home() {
-  let { homeData, purify, loading, setLoading } = useValues();
+  let { homeData, purify, loading } = useValues();
 
   useEffect(() => {
-    setLoading(false);
     document.documentElement.querySelector("title").textContent =
       "Workceptive | IT and IT enabled Service Provider";
   }, []);

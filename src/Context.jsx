@@ -68,37 +68,54 @@ function ContextProvider({ children }) {
   }, [loading]);
 
   useEffect(() => {
-    fetch(
-      "https://workceptive.com/workceptive-cms/public/api/Home",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "GET_HOME_DATA", data: result }))
-      .catch((error) => console.log("error", error));
+    const homeData = new Promise((resolve, reject) => {
+      fetch(
+        "https://workceptive.com/workceptive-cms/public/api/Home",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => resolve({ type: "GET_HOME_DATA", data: result }))
+        .catch((error) => reject(error));
+    });
 
-    fetch(
-      "https://workceptive.com/workceptive-cms/public/api/About",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "GET_ABOUT_DATA", data: result }))
-      .catch((error) => console.log("error", error));
+    const aboutData = new Promise((resolve, reject) => {
+      fetch(
+        "https://workceptive.com/workceptive-cms/public/api/About",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => resolve({ type: "GET_ABOUT_DATA", data: result }))
+        .catch((error) => reject(error));
+    });
 
-    fetch(
-      "https://workceptive.com/workceptive-cms/public/api/Company/Details",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "GET_CONTACT_DATA", data: result }))
-      .catch((error) => console.log("error", error));
+    const contactData = new Promise((resolve, reject) => {
+      fetch(
+        "https://workceptive.com/workceptive-cms/public/api/Company/Details",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => resolve({ type: "GET_CONTACT_DATA", data: result }))
+        .catch((error) => reject(error));
+    });
 
-    fetch(
-      "https://workceptive.com/workceptive-cms/public/api/Footer",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => dispatch({ type: "GET_FOOTER_DATA", data: result }))
-      .catch((error) => console.log("error", error));
+    const footerData = new Promise((resolve, reject) => {
+      fetch(
+        "https://workceptive.com/workceptive-cms/public/api/Footer",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => resolve({ type: "GET_FOOTER_DATA", data: result }))
+        .catch((error) => reject(error));
+    });
+
+    Promise.all([homeData, aboutData, contactData, footerData])
+      .then((values) => values.forEach((item) => dispatch(item)))
+      .then(() =>
+        setTimeout(() => {
+          setLoading(false);
+        }, 500)
+      )
+      .catch((err) => console.log(err));
   }, []);
 
   return (
